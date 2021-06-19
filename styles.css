@@ -2,36 +2,63 @@
   --background-color: hsl(233, 47%, 7%);
   --card-background-color: hsl(244, 38%, 16%);
   --overlay-color: hsl(277, 64%, 61%);
-  --neutral-900: hsl(0, 0%, 100%);
+  --neutral-300: hsl(0, 0%, 100%);
+  --neutral-200: hsla(0, 0%, 100%, 0.75);
+  --neutral-100: hsla(0, 0%, 100%, 0.6);
+  --border-radius: 6px;
   color: var(--neutral-900);
   font-size: 15px;
 }
 
-* {
+*,
+* ::after,
+* ::before {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--background-color);
   font-family: "Inter", sans-serif;
+}
+
+@media only screen and (max-width: 375px) {
+  body {
+    height: initial;
+  }
 }
 
 .content {
   max-width: 880px;
   display: flex;
   justify-content: center;
-  /* position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%); */
+  color: var(--neutral-300);
+}
+
+@media only screen and (max-width: 375px) {
+  .content {
+    flex-direction: column-reverse;
+    text-align: center;
+    margin: 2rem 0.5rem;
+  }
 }
 
 .text-content {
-  padding: 2.5rem 4rem 2.5rem 3.5rem;
+  padding: 2.5rem 6rem 2.5rem 3.5rem;
   background-color: var(--card-background-color);
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+
+@media only screen and (max-width: 375px) {
+  .text-content {
+    padding: 2.5rem;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+  }
 }
 
 .heading {
@@ -39,15 +66,28 @@ body {
   font-weight: 700;
 }
 
+.heading > span {
+  color: var(--overlay-color);
+}
+
 .details {
   margin-top: 1.5rem;
-  color: hsla(0, 0%, 100%, 0.75);
+  color: var(--neutral-200);
 }
 
 .statics {
   display: flex;
   justify-content: space-between;
   margin-top: 3.5rem;
+}
+
+@media only screen and (max-width: 375px) {
+  .statics {
+    flex-direction: column;
+  }
+  .statics > div + div {
+    margin-top: 1.5rem;
+  }
 }
 
 .statics-content :first-child {
@@ -57,24 +97,35 @@ body {
 
 .statics-content :last-child {
   text-transform: uppercase;
-  color: hsla(0, 0%, 100%, 0.6);
+  color: var(--neutral-100);
 }
 
 .img-content {
-  position: relative;
   width: 25rem;
   height: 22rem;
+  position: relative;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+@media only screen and (max-width: 375px) {
+  .img-content {
+    width: 24rem;
+    height: 15rem;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+  }
 }
 
 .img-content-overlay {
   width: inherit;
   height: inherit;
+  border-radius: inherit;
   position: absolute;
   background-color: var(--overlay-color);
-  opacity: 0.2;
+  opacity: 0.5;
 }
 
 img {
   width: inherit;
   height: inherit;
+  border-radius: inherit;
 }
